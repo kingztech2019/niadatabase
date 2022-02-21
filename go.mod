@@ -1,5 +1,6 @@
 module github.com/floydjones1/auth-server
 
+// +heroku goVersion go1.16
 go 1.16
 
 require (

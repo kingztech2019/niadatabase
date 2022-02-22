@@ -41,6 +41,8 @@ func Connect()  {
 		&model.VechicleInsurance{},
 		&model.VerifyCode{},
 		&model.ImagesUrl{},
+		&model.PersonalDetails{},
+		&model.PolicyDetails{},
 		 
 	)
 

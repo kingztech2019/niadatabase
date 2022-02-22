@@ -12,8 +12,9 @@ func Setup(app *fiber.App)  {
 	private.Use(jwtware.New(jwtware.Config{
 		SigningKey: []byte("secret"),
 	}))
-	private.Post("/buydetails", controller.VechicleInsurance)
-	private.Post("/policydetails", controller.PolicyDetails)
+	private.Post("/buy-details", controller.VechicleInsurance)
+	private.Post("/all-details", controller.PolicyDetails)
+	private.Post("/personal-details", controller.PersonalDetails)
 	// private.Get("/", controller.Private )
 	
 	public := app.Group("/public")

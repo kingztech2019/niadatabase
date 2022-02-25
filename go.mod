@@ -1,5 +1,6 @@
 module github.com/kingztech2019/nia_backend
 
+// +heroku goVersion go1.17
 go 1.17
 
 require github.com/gofiber/fiber/v2 v2.27.0

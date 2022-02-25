@@ -27,7 +27,7 @@ func SendEmailToken(email string, id string)  {
 
 	// Create email
 	emailSent := mail.NewMSG()
-	emailSent.SetFrom("Octamile")
+	emailSent.SetFrom("Octamile@octimile.com")
 	emailSent.AddTo(email)
 	emailSent.SetSubject("Capture Verification")
 

@@ -23,4 +23,7 @@ func Setup(app *fiber.App)  {
 	public.Post("/uploadimage", controller.UploadImage)
 	public.Static("/uploads", "./uploads")
 	public.Post("/login", controller.Login)
+	public.Post("/password-reset-code", controller.CheckEmailPaswordReset)
+	public.Post("/reset-password", controller.ChangePassword)
+
 }

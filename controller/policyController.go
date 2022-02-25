@@ -5,11 +5,11 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	email "github.com/floydjones1/auth-server/Email"
-	"github.com/floydjones1/auth-server/database"
-	"github.com/floydjones1/auth-server/model"
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v4"
+	email "github.com/kingztech2019/nia_backend/Email"
+	"github.com/kingztech2019/nia_backend/database"
+	"github.com/kingztech2019/nia_backend/model"
 )
 
 //This function is to generate passord reset token for users

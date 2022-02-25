@@ -27,11 +27,11 @@ func SendEmailToken(email string, id string)  {
 
 	// Create email
 	emailSent := mail.NewMSG()
-	emailSent.SetFrom("From Me <me@host.com>")
+	emailSent.SetFrom("Octamile")
 	emailSent.AddTo(email)
 	emailSent.SetSubject("Capture Verification")
 
-	t,_:= template.ParseFiles("./email-templates/capture.html")
+	t,_:= template.ParseFiles("./email-templates/imagecapture.html")
 	var body bytes.Buffer
 
 	t.Execute(&body, struct {

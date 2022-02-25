@@ -3,8 +3,8 @@ package utils
 import (
 	"time"
 
-	"github.com/floydjones1/auth-server/model"
 	"github.com/golang-jwt/jwt/v4"
+	"github.com/kingztech2019/nia_backend/model"
 )
 
 func CreateJWTToken(user model.User) (string, int64, error) {

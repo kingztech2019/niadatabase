@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"github.com/floydjones1/auth-server/controller"
 	"github.com/gofiber/fiber/v2"
 	jwtware "github.com/gofiber/jwt/v3"
+	"github.com/kingztech2019/nia_backend/controller"
 )
 
 

@@ -4,10 +4,10 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/floydjones1/auth-server/database"
-	"github.com/floydjones1/auth-server/model"
-	"github.com/floydjones1/auth-server/utils"
 	"github.com/gofiber/fiber/v2"
+	"github.com/kingztech2019/nia_backend/database"
+	"github.com/kingztech2019/nia_backend/model"
+	"github.com/kingztech2019/nia_backend/utils"
 	"golang.org/x/crypto/bcrypt"
 )
 

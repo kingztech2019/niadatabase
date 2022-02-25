@@ -5,11 +5,11 @@ import (
 	"math/rand"
 	"os"
 
-	"github.com/floydjones1/auth-server/database"
-	"github.com/floydjones1/auth-server/routes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
+	"github.com/kingztech2019/nia_backend/database"
+	"github.com/kingztech2019/nia_backend/routes"
 )
  
 var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")

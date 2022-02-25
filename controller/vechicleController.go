@@ -3,10 +3,10 @@ package controller
 import (
 	"log"
 
-	"github.com/floydjones1/auth-server/database"
-	"github.com/floydjones1/auth-server/model"
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v4"
+	"github.com/kingztech2019/nia_backend/database"
+	"github.com/kingztech2019/nia_backend/model"
 )
 
 

@@ -6,9 +6,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/floydjones1/auth-server/database"
-	"github.com/floydjones1/auth-server/model"
 	"github.com/gofiber/fiber/v2"
+	"github.com/kingztech2019/nia_backend/database"
+	"github.com/kingztech2019/nia_backend/model"
 )
 
 
@@ -75,26 +75,7 @@ func UploadImage(c *fiber.Ctx) error {
 		return fiber.NewError(fiber.StatusBadRequest, "invalid images credentials")
 	}
 	
-	if req.FirstImage !="" {
-		firstImage = imageReciever(req.FirstImage)
-
-		
-	}
-	if req.SecondImage !="" {
-		secondImage = imageReciever(req.SecondImage)
-
-		
-	}
-	if req.ThirdImage !="" {
-		thirdImage = imageReciever(req.ThirdImage)
-
-		
-	}
-	if req.FourthImage !="" {
-		fourthImage = imageReciever(req.FourthImage)
-
-		
-	}
+	
 //Get the user verification code
 var identitycode model.VerifyCode
 database.DB.Where("identity_code=?", strings.TrimSpace(verifyCode)).Find(&identitycode)
@@ -106,6 +87,26 @@ if identitycode.UserID ==0{
 	
 	
   }
+  if req.FirstImage !="" {
+	firstImage = imageReciever(req.FirstImage)
+
+	
+}
+if req.SecondImage !="" {
+	secondImage = imageReciever(req.SecondImage)
+
+	
+}
+if req.ThirdImage !="" {
+	thirdImage = imageReciever(req.ThirdImage)
+
+	
+}
+if req.FourthImage !="" {
+	fourthImage = imageReciever(req.FourthImage)
+
+	
+}
   images := &model.ImagesUrl{
 	 FirstImage: firstImage,
 	 SecondImage: secondImage,

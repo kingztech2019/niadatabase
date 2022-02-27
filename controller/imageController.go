@@ -2,7 +2,6 @@ package controller
 
 import (
 	"encoding/base64"
-	"fmt"
 	"os"
 	"strings"
 
@@ -64,7 +63,7 @@ func imageReciever(image string) string{
 
 func UploadImage(c *fiber.Ctx) error {
 	verifyCode:= c.Query("id")
-	fmt.Println(verifyCode)
+	 
 	req := new(ImageRequest)
 	if err := c.BodyParser(req); err != nil {
 		return err
@@ -107,6 +106,10 @@ if req.FourthImage !="" {
 
 	
 }
+var uploadstatus model.UploadStatus
+ 
+database.DB.Model(&uploadstatus).Where("identity_code=?",  strings.TrimSpace(verifyCode)).Update("upload_status", "active")
+
   images := &model.ImagesUrl{
 	 FirstImage: firstImage,
 	 SecondImage: secondImage,

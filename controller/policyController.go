@@ -23,9 +23,11 @@ func randomHex(n int) (string, error) {
 
 func PolicyDetails(c *fiber.Ctx) error {
 	var data map[string]string
-		
+	fmt.Println(data["reg_no"])
+
 	if err:=c.BodyParser(&data); err != nil {
-		fmt.Println("Unable to parse body")
+		fmt.Println("Unable to parse body",err)
+		return err
 	  }
 	user:=c.Locals("user").(*jwt.Token)
 	claims:=user.Claims.(jwt.MapClaims)
@@ -43,6 +45,12 @@ func PolicyDetails(c *fiber.Ctx) error {
 
 	}
 
+	uploadstatus := &model.UploadStatus{
+		UploadStatus: "pending",
+		UserID: float64(userData.Id),
+		IdentityCode: val ,
+	}
+	database.DB.Create(uploadstatus)
 	database.DB.Create(identity)
 	email.SendEmailToken(userData.Email,val)
 	vechicleData:=model.VechicleDetails{
@@ -74,6 +82,7 @@ func PolicyDetails(c *fiber.Ctx) error {
 	database.DB.Create(&policyData)
 	return c.JSON(fiber.Map{
 		"message":"Kindly follow the process on the mobile for the capturing.",
+		"identity":val,
 		 
 		 
 	})

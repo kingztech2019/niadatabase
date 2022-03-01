@@ -16,6 +16,7 @@ func Setup(app *fiber.App)  {
 	private.Post("/all-details", controller.PolicyDetails)
 	private.Post("/personal-details", controller.PersonalDetails)
 	private.Get("/status-check", controller.GetStatus)
+	private.Post("/get-vin-details", controller.CheckVin)
 	// private.Get("/", controller.Private )
 	
 	public := app.Group("/public")

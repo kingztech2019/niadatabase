@@ -6,7 +6,7 @@ import "gorm.io/gorm"
 type VechicleDetails struct{
 	gorm.Model
   	UserID float64  `json:"userid"` 
-	RegNo string `json:"reg_no"`
+	PlateNo string `json:"plate_no"`
 	Vin string `json:"vin"`
 	Engine string `json:"engine"`
 	VechicleColor string `json:"vechicle_color"`

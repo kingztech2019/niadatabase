@@ -7,7 +7,7 @@ type PersonalDetails struct{
 	gorm.Model
   	UserID float64  `json:"userid"` 
 	MeansOfId string `json:"means_of_id"`
-	Id string `json:"id"`
+	IdCode string `json:"id_code"`
 	Title string `json:"title"`
 	FirstName string `json:"first_name"`
 	LastName string `json:"last_name"`

@@ -36,7 +36,9 @@ func PolicyDetails(c *fiber.Ctx) error {
 
 	//Check if email already exist in database
 	var userData model.User
+	var personalData model.PersonalDetails
 	database.DB.Where("id=?", id).First(&userData)
+	database.DB.Where("user_id=?",userData.Id).First(&personalData)
 	val, _ := randomHex(4)
 	
 	identity := &model.VerifyCode{
@@ -52,10 +54,10 @@ func PolicyDetails(c *fiber.Ctx) error {
 	}
 	database.DB.Create(uploadstatus)
 	database.DB.Create(identity)
-	email.SendEmailToken(userData.Email,val)
+	email.SendCaptureUrl(userData.Email, personalData.FirstName,val)
 	vechicleData:=model.VechicleDetails{
 		UserID: id,
-		RegNo: data["reg_no"],
+		PlateNo: data["plate_no"],
 		Vin: data["vin"],
 		Engine: data["engine"],
 		VechicleColor: data["vechicle_color"],

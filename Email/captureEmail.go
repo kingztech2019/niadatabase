@@ -4,13 +4,12 @@ import (
 	"bytes"
 	"fmt"
 	"log"
-	"net/smtp"
 	"text/template"
 
 	mail "github.com/xhit/go-simple-mail"
 )
 
-func SendEmailToken(email string, id string)  {
+func SendCaptureUrl(email string, name string,id string)  {
 	fmt.Println(email, id)
 	server := mail.NewSMTPClient()
 	server.Host = "smtp.gmail.com"
@@ -37,9 +36,11 @@ func SendEmailToken(email string, id string)  {
 	t.Execute(&body, struct {
 		Email string
 		Id string
+		Name string
 	 }{
 	   Email:email,
 	   Id: id,
+	   Name:name,
 	 })
 
 	 emailSent.SetBody(mail.TextHTML,  body.String())
@@ -52,46 +53,46 @@ func SendEmailToken(email string, id string)  {
 
 }
 
-func SendCaptureUrl(email string, id string)  {
-	// Sender data.
-	from := "ife.borngreat@gmail.com"
-	password := "uvszqidwzopjeexv"
+// func SendCaptureUrl(email string, id string)  {
+// 	// Sender data.
+// 	from := "ife.borngreat@gmail.com"
+// 	password := "uvszqidwzopjeexv"
   
-	// Receiver email address.
-	to := []string{
-	  email,
-	}
+// 	// Receiver email address.
+// 	to := []string{
+// 	  email,
+// 	}
   
-	// smtp server configuration.
-	smtpHost := "smtp.gmail.com"
-	smtpPort := "587"
+// 	// smtp server configuration.
+// 	smtpHost := "smtp.gmail.com"
+// 	smtpPort := "587"
 	
 
   
-	// Authentication.
-	auth := smtp.PlainAuth("", from, password, smtpHost)
+// 	// Authentication.
+// 	auth := smtp.PlainAuth("", from, password, smtpHost)
   
-	t, _ := template.ParseFiles("./email-templates/capture.html")
+// 	t, _ := template.ParseFiles("./email-templates/capture.html")
   
-	var body bytes.Buffer
+// 	var body bytes.Buffer
   
-	mimeHeaders := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\n\n"
-	body.Write([]byte(fmt.Sprintf("Subject: This is a test subject \n%s\n\n", mimeHeaders)))
+// 	mimeHeaders := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\n\n"
+// 	body.Write([]byte(fmt.Sprintf("Subject: This is a test subject \n%s\n\n", mimeHeaders)))
   
-	t.Execute(&body, struct {
-	   Email string
-	   ID string
-	}{
-	  Email:email,
-	  ID: id,
-	})
-  log.Println(email,id)
-	// Sending email.
-	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, from, to, body.Bytes())
-	if err != nil {
-	  fmt.Println(err)
-	  return
-	}
-	fmt.Println("Email Sent!")
+// 	t.Execute(&body, struct {
+// 	   Email string
+// 	   ID string
+// 	}{
+// 	  Email:email,
+// 	  ID: id,
+// 	})
+//   log.Println(email,id)
+// 	// Sending email.
+// 	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, from, to, body.Bytes())
+// 	if err != nil {
+// 	  fmt.Println(err)
+// 	  return
+// 	}
+// 	fmt.Println("Email Sent!")
 	
-}
+// }

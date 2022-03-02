@@ -88,7 +88,7 @@ func CheckVin(c *fiber.Ctx) error {
 	 log.Printf("Request Failed: %s", err)
 	 return nil
    }
-	defer resp.Body.Close()
+	 //defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	// Log the request body 
 	bodyString := string(body)
@@ -107,18 +107,18 @@ func CheckVin(c *fiber.Ctx) error {
 	 })
 	  
 	 responseData := bytes.NewBuffer(postData) 
-	
+	log.Println("LLOOK",responseData)
   dataresp, err := http.Post("https://truevalue.octamile.com/analysis2","application/json",
   responseData)
-  log.Println("LLOOK",responseData)
+  
    if err != nil {  
 	   
 	 log.Printf("Request Failed: %s", err)
 	 return nil
    }
 
-   defer dataresp.Body.Close()
-   dataBody, err := ioutil.ReadAll(dataresp.Body)
+   //defer dataresp.Body.Close()
+   dataBody, _ := ioutil.ReadAll(dataresp.Body)
    // Log the request body 
    databodyString := string(dataBody)
    log.Print(databodyString)
@@ -133,7 +133,7 @@ func CheckVin(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{
 		"data":fiber.Map{
 			"firstcheck":bodyString,
-			"finalcheck":data.Value,
+			"finalcheck":databodyString,
 		},
 			
 		
@@ -158,7 +158,7 @@ func PersonalDetails(c *fiber.Ctx) error {
 		UserID: id,
 		FirstName: data["first_name"],
 		LastName: data["last_name"],
-		Id: data["id"],
+		IdCode: data["id_code"],
 		MeansOfId: data["means_of_id"],
 		MiddleName: data["middle_name"],
 		PhoneNumber: data["phone_number"],

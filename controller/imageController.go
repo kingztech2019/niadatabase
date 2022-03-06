@@ -13,6 +13,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/rekognition"
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
+	email "github.com/kingztech2019/nia_backend/Email"
 	"github.com/kingztech2019/nia_backend/database"
 	"github.com/kingztech2019/nia_backend/model"
 )
@@ -211,8 +212,16 @@ func UploadImage(c *fiber.Ctx) error {
 	thirdImage = imageReciever(req.ThirdImage)
 	fourthImage = imageReciever(req.FourthImage)
 	var uploadstatus model.UploadStatus
+	var user model.User
+	var personalData model.PersonalDetails
+	database.DB.Where("user_id=?", identitycode.UserID).First(&personalData)
 
 	database.DB.Model(&uploadstatus).Where("identity_code=?", strings.TrimSpace(verifyCode)).Update("upload_status", "active")
+	database.DB.Where("id=?", identitycode.UserID).First(&user)
+	if uploadstatus.UploadStatus == "active" {
+		email.SendCertificateMail(user.Email, personalData.FirstName)
+
+	}
 
 	images := &model.ImagesUrl{
 		FirstImage:  firstImage,

@@ -52,7 +52,7 @@ func ImageValidator(scannedimage []byte) interface{} {
 	for _, value := range result.Labels {
 		for _, val := range value.Parents {
 
-			if val.Name == "Car" && value.Confidence >= float64(90) || val.Name == "Vehicle" && value.Confidence >= float64(90) {
+			if val.Name == "Car" && value.Confidence >= float64(60) || val.Name == "Vehicle" && value.Confidence >= float64(60) {
 				filter := append(filtered, val.Name)
 				//fmt.Println(filter)
 				return filter

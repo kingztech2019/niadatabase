@@ -149,7 +149,7 @@ func UploadImage(c *fiber.Ctx) error {
 	}
 	// ||req.ThirdImage==""||req.FourthImage==""
 
-	if req.FirstImage == "" || req.SecondImage == "" {
+	if req.FirstImage == "" {
 		return fiber.NewError(fiber.StatusBadRequest, "invalid images payload")
 	}
 
@@ -194,16 +194,16 @@ func UploadImage(c *fiber.Ctx) error {
 		}
 
 	}
-	if req.FourthImage != "" {
-		fourthAnalysis = imageScanner(req.FourthImage)
-		if ImageValidator(fourthAnalysis) == nil {
-			c.Status(400)
-			return c.JSON(fiber.Map{
-				"message": "Unable to identify the fourth image uploaded please try again",
-			})
-		}
+	// if req.FourthImage != "" {
+	// 	fourthAnalysis = imageScanner(req.FourthImage)
+	// 	if ImageValidator(fourthAnalysis) == nil {
+	// 		c.Status(400)
+	// 		return c.JSON(fiber.Map{
+	// 			"message": "Unable to identify the fourth image uploaded please try again",
+	// 		})
+	// 	}
 
-	}
+	// }
 
 	//THIS METHOD CREATE AND SAVE THE IMAGES
 	firstImage = imageReciever(req.FirstImage)

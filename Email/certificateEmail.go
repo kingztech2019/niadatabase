@@ -26,7 +26,7 @@ func SendCertificateMail(email string, name string) {
 	// Create email
 	emailSent := mail.NewMSG()
 	emailSent.SetFrom("Octamile@octimile.com")
-	emailSent.AddTo(email)
+	emailSent.AddTo("olumide.adeyemo@octamile.com")
 	emailSent.SetSubject("Certificate")
 	emailSent.AddAttachment("./email-templates/certificate.pdf")
 	t, _ := template.ParseFiles("./email-templates/certificate.html")

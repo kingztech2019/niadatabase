@@ -217,11 +217,9 @@ func UploadImage(c *fiber.Ctx) error {
 	database.DB.Where("user_id=?", identitycode.UserID).First(&personalData)
 
 	database.DB.Model(&uploadstatus).Where("identity_code=?", strings.TrimSpace(verifyCode)).Update("upload_status", "active")
-	database.DB.Where("id=?", identitycode.UserID).First(&user)
-	if uploadstatus.UploadStatus == "active" {
-		email.SendCertificateMail(user.Email, personalData.FirstName)
-
-	}
+	database.DB.Where("id=?", uploadstatus.UserID).Find(&user)
+	log.Println(user.Email)
+	email.SendCertificateMail(user.Email, personalData.FirstName)
 
 	images := &model.ImagesUrl{
 		FirstImage:  firstImage,
